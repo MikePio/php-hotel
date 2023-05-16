@@ -59,12 +59,20 @@ $hotels = [
 
   <div class="container p-5">
 
-  <div><?php foreach ($hotels as $hotel){
-    // echo $hotel; // non funziona
-    foreach($hotel as $hotelDetails){
-      echo $hotelDetails . "<br>";
-    }
-  } ?></div>
+  <h1>PHP Hotel</h1>
+
+    <div><?php foreach ($hotels as $hotel) {
+            // echo $hotel; // così non funziona
+            echo "<br>";
+            foreach ($hotel as $hotelDetails => $value ) {
+              //* stampo tutte le chiavi
+              // echo $hotelDetails . "<br>";
+              //* stampo tutti i valori
+              // echo "$value <br>";
+              //* stampo tutte le chiavi e tutti i valori
+              echo "$hotelDetails: $value <br>";
+            }
+          } ?></div>
 
 
 
