@@ -57,6 +57,19 @@ $hotels = [
 // $hotelKeys = [];
 
 // foreach ($hotels as $hotel) {
+//   foreach ($hotel as $hotelDetails => $value) {
+//     if (!in_array($hotelDetails, $hotelKeys)) {
+//       $hotelKeys[] = $hotelDetails;
+//     }
+//   }
+// }
+
+// var_dump($hotelKeys);
+
+//*FUNZIONA
+// $hotelKeys = [];
+
+// foreach ($hotels as $hotel) {
 //   $hotelKeys = array_merge($hotelKeys, array_keys($hotel));
 
 // }
@@ -149,14 +162,6 @@ $hotels = [
           }
           ?></div>
 
-
-    <?php
-
-
-
-    ?>
-
-
     <table class="table text-white">
       <thead>
         <tr>
@@ -173,7 +178,7 @@ $hotels = [
               }
               // echo "<th scope='col' class='text-white'>$hotelKeys</th>";
               foreach ($hotelKeys as $key) {
-              //*STAMAPTI TUTTE LE KEY IN TABELLA
+              //*STAMAPATE TUTTE LE KEY IN TABELLA
               echo "<th>$key</th>";
               // var_dump($hotelKeys);
               }
@@ -182,13 +187,45 @@ $hotels = [
         </tr>
       </thead>
       <!-- <th scope="col">#</th>
-          <th scope="col">$hotelDetails</th>
+          <th scope="col">$hotelDetails</th> -->
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>$value</td>
-        </tr>
-      </tbody> -->
+        <!-- <tr> -->
+        <?php 
+          // $i = 1;
+          foreach ($hotels as $hotel) {
+            echo "<tr>";
+            // $i+1;
+            // $i++;
+            // for ($i = 0; $i < count($hotel); $i++){
+            //     // echo "<td>$i</td>";
+            //     echo "<td>$i</td>";
+            //   }
+            echo "<td>#</td>";
+            // echo "<td>$i</td>";
+            // echo "<td>$hotels[$hotel]</td>";
+            // echo "<td>";
+          foreach ($hotel as $hotelDetails => $value) {
+            for ($i = 0; $i < count($hotel); $i++) {
+                // echo $hotel . "<br>";
+                // echo $hotelDetails[$i];
+                // echo $hotel[$hotelDetails];
+                // echo $hotel[$i] . "<br>";
+                // echo $hotel[$hotelDetails] . "<br>";
+                // echo $hotel[count($hotel)] . "<br>";
+                
+              }
+              //* stampo tutti i valori
+              echo "<td>$value</td>";
+              // echo $value;
+            }
+            // echo "</td>";
+            echo "</tr>";
+          }
+          ?>
+          <!-- <th scope="row">1</th>
+          <td>$value</td> -->
+        <!-- </tr> -->
+      </tbody>
     </table>
 
   </div>
