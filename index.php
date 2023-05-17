@@ -40,13 +40,16 @@ $hotels = [
 
 ];
 
-
+//! esempi vari (uso personale)
+//* tutte le key
 // $keys = array_keys($hotels);
 // echo $keys."\n";
 
+//* prima key
 // $firstKey = array_shift($keys);
 // echo $firstKey."\n";
 
+//* ultima key
 // $lastKey = array_pop($keys);
 // echo $lastKey."\n";
 
@@ -73,12 +76,10 @@ $hotels = [
 //   $hotelKeys = array_merge($hotelKeys, array_keys($hotel));
 
 // }
-
+// ogni elemento di un array viene inserito una sola volta nell'array
 // $hotelKeys = array_unique($hotelKeys);
 
 // var_dump($hotelKeys);
-
-
 
 ?>
 
@@ -101,137 +102,85 @@ $hotels = [
 
     <h1>PHP Hotel</h1>
 
-    <div>
-      <?php
-      // echo $hotelKeys;
-      ?>
-    </div>
-
-    <div><?php foreach ($hotels as $hotel) {
-            // echo $hotel; // così non funziona
-            // echo "<br>";
-            // echo count($hotel);
-            // for ($i = 0; $i < count($hotel); $i++){
-            //   // echo $hotel . "<br>";
-            //   echo $hotel[$i] . "<br>";
-            //   // echo $hotel[$i] . "<br>";
-
-            // }
-
-            // $hotelKeys = array_merge($keys, array_keys($hotel));
-
-            foreach ($hotel as $hotelDetails => $value) {
-              // $output = array_keys($hotel);
-              // print_r($output);
-
-              // foreach($output as $key => $values){
-              // $key = array_keys($output);
-              // print_r($key);
-              // echo array_keys($key);
-              // }
-
-              // echo array_keys($hotel);
-              // echo "$hotel[$hotelDetails]";
-              // echo "$hotel[$hotelDetails]";
-              //* stampo tutte le chiavi
-              // echo $hotelDetails . "<br>";
-              // echo count($hotel);
-              // echo count($hotelDetails);
-              // echo $hotel[$hotelDetails];
-
-
-              // echo "<br>";
-              for ($i = 0; $i < count($hotel); $i++) {
-                // echo $hotel . "<br>";
-                // echo $hotelDetails[$i];
-                // echo $hotel[$hotelDetails];
-                // echo $hotel[$i] . "<br>";
-                // echo $hotel[$hotelDetails] . "<br>";
-                // echo $hotel[count($hotel)] . "<br>";
-
-              }
-
-              // foreach($hotelDetails as $hotelDetail){
-
-              // }
-              //* stampo tutti i valori
-              // echo "$value <br>";
-              //* stampo tutte le chiavi e tutti i valori
-              // echo "$hotelDetails: $value <br>";
-            }
-          }
-          ?></div>
-
     <table class="table text-white">
       <thead>
         <tr>
           <th scope="col">#</th>
-            <!-- <th scope="col" class="text-white"> -->
-              <?php
-              $hotelKeys = [];
-              foreach ($hotels as $hotel) {
-                foreach ($hotel as $hotelDetails => $value) {
-                  if (!in_array($hotelDetails, $hotelKeys)) {
-                    $hotelKeys[] = $hotelDetails;
-                  }
-                }
-              }
-              // echo "<th scope='col' class='text-white'>$hotelKeys</th>";
-              foreach ($hotelKeys as $key) {
-              //*STAMAPATE TUTTE LE KEY IN TABELLA
-              echo "<th>$key</th>";
-              // var_dump($hotelKeys);
-              }
-              ?>
-            <!-- </th> -->
-        </tr>
-      </thead>
-      <!-- <th scope="col">#</th>
-          <th scope="col">$hotelDetails</th> -->
-      <tbody>
-        <!-- <tr> -->
-        <?php 
-          // $i = 1;
+          <?php
+          $hotelKeys = [];
           foreach ($hotels as $hotel) {
-            echo "<tr>";
-            // $i+1;
-            // $i++;
-            // for ($i = 0; $i < count($hotel); $i++){
-            //     // echo "<td>$i</td>";
-            //     echo "<td>$i</td>";
-            //   }
-            echo "<td>#</td>";
-            // echo "<td>$i</td>";
-            // echo "<td>$hotels[$hotel]</td>";
-            // echo "<td>";
-          foreach ($hotel as $hotelDetails => $value) {
-            for ($i = 0; $i < count($hotel); $i++) {
-                // echo $hotel . "<br>";
-                // echo $hotelDetails[$i];
-                // echo $hotel[$hotelDetails];
-                // echo $hotel[$i] . "<br>";
-                // echo $hotel[$hotelDetails] . "<br>";
-                // echo $hotel[count($hotel)] . "<br>";
-                
+            foreach ($hotel as $hotelDetails => $value) {
+              //* Controlla se esiste un valore in un array
+              if (!in_array($hotelDetails, $hotelKeys)) {
+                $hotelKeys[] = $hotelDetails;
               }
-              //* stampo tutti i valori
-              echo "<td>$value</td>";
-              // echo $value;
             }
-            // echo "</td>";
-            echo "</tr>";
+          }
+          foreach ($hotelKeys as $key) {
+            //*STAMAPATE TUTTE LE KEY IN TABELLA
+            echo "<th>$key</th>";
           }
           ?>
-          <!-- <th scope="row">1</th>
-          <td>$value</td> -->
-        <!-- </tr> -->
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($hotels as $hotel) {
+          echo "<tr>";
+          echo "<td>#</td>";
+          foreach ($hotel as $hotelDetails => $value) {
+            //* stampo tutti i valori
+            // echo "<td>$value</td>";
+            //* 1 sta per true
+            // if ($hotelDetails == 'parking' && $value == true) {
+            if ($hotelDetails == 'parking' && $value == 1) {
+              echo "<td>Sì</td>";
+              //* 0 sta per false
+              // } else if ($hotelDetails == 'parking' && $value == false) {
+            } else if ($hotelDetails == 'parking' && $value == 0) {
+              echo "<td>No</td>";
+            } else {
+              echo "<td>$value</td>";
+            }
+          }
+          echo "</tr>";
+        }
+        ?>
       </tbody>
     </table>
+
+    <!-- //*table stampata con un solo forEach -->
+    <h1>Table con un solo forEach</h1>
+
+    <div>
+      <table class="table text-white">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Descrizione</th>
+            <th scope="col">Parcheggio</th>
+            <th scope="col">Voto</th>
+            <th scope="col">Distanza dal centro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($hotels as $hotel) : ?>
+            <tr>
+              <th scope="row"><?php echo $hotel['name'] ?></th>
+              <td><?php echo $hotel['description'] ?></td>
+              <td><?php echo ($hotel['parking']) ? 'Si' : 'No' ?></td>
+              <td><?php echo $hotel['vote'] ?></td>
+              <td><?php echo $hotel['distance_to_center'] ?></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+
 
   </div>
 
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script> -->
-
 
 </body>
 
